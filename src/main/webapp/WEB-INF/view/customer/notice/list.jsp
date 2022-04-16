@@ -64,22 +64,16 @@
 </div>
 
 <div class="margin-top align-center pager">	
-
 <div>
-
-
-<span class="btn btn-prev" onclick="alert('이전 페이지가 없습니다.');">이전</span>
-
-</div>
-<ul class="-list- center">
-<li><a class="-text- orange bold" href="?p=1&t=&q=" >1</a></li>
+	<span class="btn btn-prev" onclick="alert('이전 페이지가 없습니다.');">이전</span>
 	
-</ul>
-<div>
-
-
-<span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.');">다음</span>
-
+	</div>
+	<ul class="-list- center">
+	<li><a class="-text- orange bold" href="?p=1&t=&q=" >1</a></li>
+	</ul>
+	<div>
+	
+	<span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.');">다음</span>
 </div>
 
 </div>

@@ -5,15 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <title>공지사항목록 - ${test}</title>
-    
     <link href="/css/customer/layout.css" type="text/css" rel="stylesheet" />
     <style>
-    
         #visual .content-container{	
             height:inherit;
             display:flex; 
             align-items: center;
-            
             background: url("../../images/customer/visual.png") no-repeat center;
         }
     </style>
@@ -36,4 +33,4 @@
     <!-- ------------------- <footer> --------------------------------------- -->
     <tiles:insertAttribute name="footer" />
     </body>
-    </html>
+</html>

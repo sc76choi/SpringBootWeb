@@ -3,6 +3,8 @@ package com.sc.web.entity;
 import java.util.Date;
 
 public class Notice {
+	
+	// id, title, content, regdate, hit, pub, memberId
 	private int id;
 	private String title;
 	private String content;
