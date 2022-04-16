@@ -14,8 +14,12 @@ import com.sc.web.entity.NoticeView;
 @Mapper
 public interface NoticeDao {
 
-//	@Select("select * from noticeView ")
-	List<NoticeView> getViewList(int offset, int size, String field, String query, boolean i);
+//	@Result(property = "memberName" , column="member_name")
+//	@Select("select * from noticeView "
+//			+ " where ${field} like '%${query}%' "	
+//			+ " order by regdate desc "	
+//			+ " limit #{offset}, #{size} ")
+	List<NoticeView> getViewList(int offset, int size, String field, String query);
 	int getCount(String field, String query);
 	
 	NoticeView getView(int id);

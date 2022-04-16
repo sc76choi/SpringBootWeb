@@ -25,33 +25,23 @@ public class NoticeServiceImp implements NoticeService {
 	@Override
 	public List<NoticeView> getViewList() {
 		// TODO Auto-generated method stub
-		return getViewList(1, "title", "", true);
+		return getViewList(1, "title", "");
 	}
 
 	@Override
 	public List<NoticeView> getViewList(String field, String query) {
 		// TODO Auto-generated method stub
-		return getViewList(1, field, query, true);
+		return getViewList(1, field, query);
 	}
 	
 	@Override
-	public List<NoticeView> getViewList(int page, String field, String query, boolean pub) {
-		
+	public List<NoticeView> getViewList(int page, String field, String query) {
 		int size = 10; 
-		int offset = 0+(page-1)*size;
-		System.out.println("page:" + page + ", offset:" + offset + ",size:" + size + ", pub:" + pub);
-		List<NoticeView> list = noticeDao.getViewList(offset, size, field, query, pub);
+		int offset = 0+(page-1)*size; // page 1 -> 0, 2 -> 10, 3 -> 20, an = a1 + (n-1)d
+		List<NoticeView> list = noticeDao.getViewList(offset, size, field, query);
 		return list;
 	}
 	
-//	@Override
-//	public List<NoticeView> getViewList(int offset, int size, String field, String query) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
-
-
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
@@ -105,7 +95,4 @@ public class NoticeServiceImp implements NoticeService {
 		// TODO Auto-generated method stub
 		return noticeDao.insert(notice);
 	}
-
-
-
 }
