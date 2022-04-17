@@ -5,88 +5,93 @@
 <mapper namespace="com.sc.web.dao.NoticeDao">
   <select id="getViewList" resultType="com.sc.web.entity.NoticeView">
     select * from NoticeView
-    <!-- <trim prefix="WHERE" prefixOverrides="AND | OR ">
+    <trim prefix="WHERE" prefixOverrides="AND | OR ">
         <if test="query != null and query != ''">
             ${field} like '%${query}%'
         </if>
-        and pub = #{pub}
-    </trim> -->
+        and pub = ${pub}
+    </trim>
     order by id desc, regdate desc
     limit #{offset}, #{size}
   </select>
-  <select id="getCount">
+  <select id="getCount" resultType="int">
     select count(id) count from Notice
-    where ${field} like '%${query}%'
+        <where>
+            <if test="query != null and query != ''">
+                ${field} like '%${query}%'
+            </if>
+            and pub = ${pub}
+        </where>
   </select>
   <select id="getView" resultType="com.sc.web.entity.NoticeView">
-  	select * from NoticeView
-	where id = #{id}
+    select * from NoticeView
+    where id = #{id}
   </select>
   
   <select id="getNext" resultType="com.sc.web.entity.Notice">
-	 select * from notice
-	 where regdate &gt; (select regdate from notice where id = #{id})
-	 order by id , regdate 
-	 limit 1
+     select * from notice
+     where regdate &gt; (select regdate from notice where id = #{id})
+     order by id , regdate 
+     limit 1
  </select>
   <select id="getPrev" resultType="com.sc.web.entity.Notice">
-	 select * from notice
-	 where regdate &lt; (select regdate from notice where id = #{id})
-	 order by id desc, regdate desc 
-	 limit 1
+     select * from notice
+     where regdate &lt; (select regdate from notice where id = #{id})
+     order by id desc, regdate desc 
+     limit 1
  </select>
  <update id="update" parameterType="com.sc.web.entity.Notice">
- 	update notice 
- 	set 
- 	title = #{title},
- 	content = #{content},
- 	pub = #{pub},
- 	hit = #{hit}
- 	where id = #{id}
+    update notice 
+    set 
+    title = #{title},
+    content = #{content},
+    pub = #{pub},
+    hit = #{hit}
+    where id = #{id}
  </update>
  <insert id="insert" parameterType="com.sc.web.entity.Notice">
- 	insert into notice(title, content, memberId)
- 	values (#{title}, #{content}, #{id})
+    insert into notice(title, content, memberId)
+    values (#{title}, #{content}, #{id})
  </insert>
  <delete id="delete">
- 	delete from notice
- 	where id = #{id}
+    delete from notice
+    where id = #{id}
  </delete>
  <delete id="deleteAll">
- 	delete from notice
- 	where id in
+    delete from notice
+    where id in
     <foreach item="id" index="index" collection="ids"
         open="(" separator="," close=")">
           #{id}
     </foreach>
  </delete>
  <update id="updatePubAll">
-	update notice 
- 	set 
- 		pub = #{pub}
- 	where id in
-	<foreach item="id" index="index" collection="ids"
+    update notice 
+    set 
+        pub = #{pub}
+    where id in
+    <foreach item="id" index="index" collection="ids"
         open="(" separator="," close=")">
           #{id}
     </foreach>
-  	<!-- update notice 
- 	set 
- 		pub = case id
- 	<foreach item="id" collection="pubIds">
-		when #{id} then 1 		
- 	</foreach>
- 	<foreach item="id" collection="closeIds">
-		when #{id} then 1 		
- 	</foreach>
- 	end
- 	where id in (
- 	<foreach item="id" collection="pubIds">
-		#{id} 		
- 	</foreach>
- 	,
- 	<foreach item="id" collection="closeIds">
-		#{id} 		
- 	</foreach>
- 	) -->
+    <!-- update notice 
+    set 
+        pub = case id
+    <foreach item="id" collection="pubIds">
+        when #{id} then 1       
+    </foreach>
+    <foreach item="id" collection="closeIds">
+        when #{id} then 1       
+    </foreach>
+    end
+    where id in (
+    <foreach item="id" collection="pubIds">
+        #{id}
+    </foreach>
+    ,
+    <foreach item="id" collection="closeIds">
+        #{id}       
+    </foreach>
+    ) -->
  </update>
 </mapper>

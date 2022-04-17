@@ -19,10 +19,10 @@ public interface NoticeDao {
 //			+ " where ${field} like '%${query}%' "	
 //			+ " order by regdate desc "	
 //			+ " limit #{offset}, #{size} ")
-	List<NoticeView> getViewList(int offset, int size, String field, String query);
-	int getCount(String field, String query);
-	
+	List<NoticeView> getViewList(int offset, int size, String field, String query, boolean pub);
+	int getCount(String field, String query, boolean pub);
 	NoticeView getView(int id);
+	
 	Notice getNext(int id);
 	Notice getPrev(int id);
 
