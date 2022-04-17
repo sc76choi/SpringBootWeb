@@ -13,8 +13,8 @@ class NoticeServiceImpTest {
 	private NoticeService service;
 	
 	@Test
-	void test() {
-		System.out.println(service.getCount());
+    void test() {
+        System.out.println(service.getCount());
 	}
 
 }

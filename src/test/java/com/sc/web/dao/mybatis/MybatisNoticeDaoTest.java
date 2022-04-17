@@ -14,8 +14,8 @@ import com.sc.web.entity.NoticeView;
 
 @SpringBootTest
 class MybatisNoticeDaoTest {
-	
-	@Autowired
+
+    @Autowired
 	private NoticeDao noticeDao;
 	
 	@Test
